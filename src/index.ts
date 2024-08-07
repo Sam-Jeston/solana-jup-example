@@ -74,9 +74,17 @@ async function main() {
 
   console.log('Transaction signature:', txSignature)
 
-  while (true) {
-    const r = await connection.getTransaction(txSignature)
-    console.log(r)
+  let confirmed = false
+  while (!confirmed) {
+    const confirmedTx = await connection.getTransaction(txSignature, {
+      commitment: 'confirmed',
+      maxSupportedTransactionVersion: 0
+    })
+
+    if (confirmedTx?.transaction) {
+      console.log(`Tx confirmed`)
+      confirmed = true
+    }
     await new Promise(res => setTimeout(res, 1000))
   }
 }
