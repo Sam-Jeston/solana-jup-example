@@ -37,7 +37,7 @@ async function main() {
 
   // For demonstration, we target the out required from the atomic operation as less than the input
   // Solana.
-  const outRequired = solTradeSize * 0.99
+  const outRequired = solTradeSize * 1.0001
 
   // Again this is a demonstration value - do not set slippage to 5% for anything real
   const slippage = 500
@@ -68,9 +68,7 @@ async function main() {
   )
 
   tx.sign([keypair])
-  const txSignature = await connection.sendTransaction(tx, {
-    skipPreflight: true,
-  })
+  const txSignature = await connection.sendTransaction(tx)
 
   console.log('Transaction signature:', txSignature)
 

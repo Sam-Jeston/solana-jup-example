@@ -101,7 +101,7 @@ export async function getSwapInstructions(
           userPublicKey: publicKey.toBase58(),
           wrapAndUnwrapSol: false,
           // Very aggressive priority fees for demo purposes
-          computeUnitPriceMicroLamports: 50_000_000_000,
+          computeUnitPriceMicroLamports: 100_000_000_000,
         }),
       }
     )
